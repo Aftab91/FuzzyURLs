@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+      integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/style.css' %}"
+    />
+    <title>📎Shorten Links</title>
+
+    <!-- <link rel="stylesheet" href="../static/css/style.css">   -->
+  </head>
+  <body id="particles-js">
+    <div class="main">
+      {% block content %} {% if new %}
+
+      <form id="form-2" class="form-2" method="POST" action="/m/mail" autocomplete="off">
+        {% csrf_token %}
+        <p class="text" align="center">
+          <i class="fas fa-link"></i> New Link:
+          <a class="link" href="{{new}}">{{ new }}</a>
+        </p>
+        <div class="cont">
+          <i id="surround" class="fas fa-envelope" style="font-size: 40px"></i>
+          <div class="form-group">
+            <div class="input-field">
+              <input
+                type="email"
+                id="mail"
+                name="mail"
+                aria-label="Text input with radio button"
+                class="form-link"
+                required
+              />
+              <label for="mail">Get in in your inbox</label>
+            </div>
+            <button
+              class="email-btn"
+              method="POST"
+              href="/m/mail"
+              type="submit"
+            >
+              <!-- <i class="right fas fa-chevron-right"></i> -->
+              <img
+                src="https://img.icons8.com/metro/26/000000/long-arrow-right.png"
+              />
+            </button>
+          </div>
+        </div>
+        <div class="info-cont">
+          <small id="emailHelp" class="form-text text-muted">
+            <i>We'll never share your email with anyone else</i>
+          </small>
+        </div>
+
+        {% if success == True %}
+        <div
+          id="success"
+          class="alert alert-success"
+          align="center"
+          role="alert"
+        >
+          Email sent! Kindly check your inbox😃
+        </div>
+        {% endif %} {% if success == False %}
+        <div
+          id="success"
+          class="alert alert-danger"
+          align="center"
+          role="alert"
+        >
+          <i class="fa fa-times-circle"></i>
+          <strong>Error sending you an email, Try Again!</strong>
+        </div>
+        {% endif %}
+      </form>
+      {% endif %} {% endblock content %}
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"
+    ></script>
+    <script src="../static/scripts/index.js"></script>
+    <!-- Import Particles.js and app.js files -->
+    <script src="../static/scripts/particles.js"></script>
+    <script src="../static/scripts/pj.js"></script>
+  </body>
+</html>
